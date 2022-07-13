@@ -16,6 +16,7 @@ class CreatePersonsTable extends Migration
         Schema::create('persons', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('other_id');
             $table->integer('tax_identity_sign');
             $table->date('entry_date');
             $table->date('exit_date')->nullable();

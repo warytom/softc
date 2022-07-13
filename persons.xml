@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<persons>
+    <person>
+        <tax_identity_sign>778899112</tax_identity_sign>
+        <name>Nagy Mihály</name>
+        <id>1</id>
+        <other_id>321321</other_id>
+        <entry_date>2015.09.08</entry_date>
+        <exit_date>2021.09.08</exit_date>
+        <email>nagy.mihaly@gmail.com</email>
+    </person>
+    <person>
+        <tax_identity_sign>108899112</tax_identity_sign>
+        <name>Szép Rózsa</name>
+        <id>2</id>
+        <other_id>423423</other_id>
+        <entry_date>2017.10.18</entry_date>
+        <exit_date>2021.07.28</exit_date>
+        <email>szep.rozsa@gmail.com</email>
+    </person>
+    <person>
+        <tax_identity_sign>108813242</tax_identity_sign>
+        <name>Erős Pista</name>
+        <id>3</id>
+        <other_id>534534</other_id>
+        <entry_date>2014.04.11</entry_date>
+        <exit_date>2020.10.28</exit_date>
+        <email>eros.pista@gmail.com</email>
+    </person>
+    <person>
+        <tax_identity_sign>108813242</tax_identity_sign>
+        <name>Erős Pista</name>
+        <id>3</id>
+        <other_id>534534</other_id>
+        <entry_date>2014.04.11</entry_date>
+        <exit_date>2020.10.28</exit_date>
+        <email>eros.pista@gmail.com</email>
+    </person>
+    <person>
+        <tax_identity_sign>108813243</tax_identity_sign>
+        <name>Kiss Panna</name>
+        <id>4</id>
+        <other_id>645654</other_id>
+        <entry_date>2012.05.01</entry_date>
+        <exit_date>2022.09.28</exit_date>
+        <email>kiss.panna@gmail.com</email>
+    </person>
+    <person>
+        <tax_identity_sign>201253242</tax_identity_sign>
+        <name>kovács József</name>
+        <id>5</id>
+        <other_id>756756</other_id>
+        <entry_date>2011.05.01</entry_date>
+        <exit_date>2009.11.02</exit_date>
+        <email>kovacs.József@gmail.com</email>
+    </person>
+</persons>

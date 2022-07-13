@@ -10,11 +10,14 @@ class Persons extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'taxIdentitySign',
-        'entryDate',
-        'exitDate'
+        'other_id',
+        'tax_identity_sign',
+        'entry_date',
+        'exit_date'
         ];
 
-
+    public function log(){
+        return $this->hasOne(Logs::class, 'person_id');
+    }
 
 }

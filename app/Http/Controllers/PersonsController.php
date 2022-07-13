@@ -2,31 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Logs;
 use App\Models\Persons;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class PersonsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
-     * Display a listing of the resource.
+     * Show the application dashboard.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('home');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -35,51 +32,28 @@ class PersonsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $xml = simplexml_load_string($request->xml->getContent());
+        $json = json_encode($xml);
+        $persons = json_decode($json,TRUE);
+        $auth = auth()->user()->id;
+        $results =[];
+        foreach ($persons['person'] as $person){
+            $newPerson = new Persons();
+            $newPerson->name = $person['name'];
+            $newPerson->other_id = $person['other_id'];
+            $newPerson->tax_identity_sign = $person['tax_identity_sign'];
+            $newPerson->entry_date = $person['entry_date'];
+            $newPerson->exit_date = $person['exit_date'];
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Persons  $persons
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Persons $persons)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Persons  $persons
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Persons $persons)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Persons  $persons
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Persons $persons)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Persons  $persons
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Persons $persons)
-    {
-        //
+            if(Persons::where('tax_identity_sign', $person['tax_identity_sign'])->count() == 0){
+                $newPerson->save();
+                $newLog = new Logs();
+                $newLog->person_id = $newPerson->id;
+                $newLog->author_id = $auth;
+                $newLog->save();
+            }
+            $results[] = $newPerson;
+        }
+        return view('home')->with('results', $results);
     }
 }
