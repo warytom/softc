@@ -42,8 +42,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-//    public function log()
-//    {
-//        return $this->belongsTo(Logs::class, 'author_id');
-//    }
+    public function log()
+    {
+        return $this->hasMany(Logs::class, 'id');
+    }
+
 }

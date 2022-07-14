@@ -5,6 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card p-3">
+
                 <form action="{{route('store.persons')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <h5 class="card-title">Xml feltöltés</h5>
@@ -16,13 +17,13 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class=" btn-ok btn btn-block btn-dark">Elküld!</button>
+                    <button type="submit" id="xml_submit" class="btn-ok btn btn-block btn-dark">Elküld!</button>
                 </form>
-
                 @if(isset($results))
+
                     <h4 class="mt-5">Feltöltés eredménye:</h4>
 
-                    <div class="card">
+                    <div class="card table-card">
                         <table class="table">
                             <thead>
                             <tr>
@@ -49,7 +50,7 @@
                                 <td>{{$result->exit_date}}</td>
                                 <td>
                                     @if(isset($result->log->person_id))
-                                        sikers feltöltés
+                                        sikeres feltöltés
                                     @else
                                         sikertelen feltöltés létező személy
                                     @endif
@@ -64,4 +65,16 @@
         </div>
     </div>
 </div>
+<script>
+    {{--validate file--}}
+    document.querySelector('#xml').addEventListener('change', function (){
+        var val = this.value.toLowerCase();
+        var regex = new RegExp("(.*?)\.(xml)$");
+        if(!(regex.test(val))) {
+            this.value = "";
+            alert('Csak xml fájl formátum tölthető fel!');
+            return false;
+        }
+    })
+</script>
 @endsection

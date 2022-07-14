@@ -52,6 +52,15 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('home')}}">Xml feltöltés</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('index.persons')}}">Személyek</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('index.logs')}}">Logok</a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

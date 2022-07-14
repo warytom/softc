@@ -17,7 +17,7 @@ class Persons extends Model
         ];
 
     public function log(){
-        return $this->hasOne(Logs::class, 'person_id');
+        return $this->hasOne(Logs::class, 'person_id')->with('author');
     }
 
 }
